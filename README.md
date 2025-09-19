@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# Airline_System
-=======
 # ✈️ Airline System
 
 Airline reservation and management system built with **JSP/Servlet** and **MySQL**, containerized using **Docker** and **Docker Compose**.
@@ -97,4 +94,3 @@ Everything will run automatically with the same environment.
 - Do **not** commit `.env` to GitHub. Provide sample `.env.example` instead.
 
 ---
->>>>>>> c3c49d1 (added)
