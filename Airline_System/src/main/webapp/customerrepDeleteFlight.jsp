@@ -3,7 +3,11 @@
 	String flight_num = request.getParameter("flight_num");
 	String two_letter_id = request.getParameter("two_letter_id");
 	Class.forName("com.mysql.jdbc.Driver");
-	Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbFinal", "root", "RUscr3w420!");
+	Connection con = DriverManager.getConnection(
+    System.getenv("DB_URL"),
+    System.getenv("DB_USER"),
+    System.getenv("DB_PASSWORD")
+);
 	
 	
 	String sql = "delete from flight_search_operated_by where flight_num = ? and two_letter_id = ?";

@@ -3,7 +3,11 @@
 	String passenger_first = request.getParameter("passenger_first");
 	String passenger_last = request.getParameter("passenger_last");
 	Class.forName("com.mysql.jdbc.Driver");
-	Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbFinal", "root", "RUscr3w420!");
+	Connection con = DriverManager.getConnection(
+    System.getenv("DB_URL"),
+    System.getenv("DB_USER"),
+    System.getenv("DB_PASSWORD")
+);
 	Statement st = con.createStatement();
 	ResultSet rs;
 	rs = st.executeQuery("select * from flight_search_operated_by join ticket_economy_business_first_changes_buys on flight_search_operated_by.flight_num = ticket_economy_business_first_changes_buys.flight_num where passenger_first ='" + passenger_first + "' and passenger_last = '" + passenger_last + "'");

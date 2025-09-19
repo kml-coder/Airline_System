@@ -9,7 +9,11 @@
 
     try {
         Class.forName("com.mysql.jdbc.Driver");
-    	con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbFinal", "root", "RUscr3w420!");
+    	con = DriverManager.getConnection(
+    System.getenv("DB_URL"),
+    System.getenv("DB_USER"),
+    System.getenv("DB_PASSWORD")
+);
     	
     	pstmt = con.prepareStatement("Select * from waiting_list where acc_id = ? and flight_num = ?");
     	pstmt.setString(1, acc_id);

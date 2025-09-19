@@ -39,7 +39,11 @@ if (tripType.equals("oneWay")) {
 
 try {
     Class.forName("com.mysql.cj.jdbc.Driver");
-    con = DriverManager.getConnection(jdbcUrl, username, password);
+    con = DriverManager.getConnection(
+    System.getenv("DB_URL"),
+    System.getenv("DB_USER"),
+    System.getenv("DB_PASSWORD")
+);
     st = con.createStatement();
     
      
@@ -85,7 +89,11 @@ try {
 
 	ArrayList<String> depTakenSeats = new ArrayList<>();
 	 int numSeats = 0;
-    try (Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
+    try (Connection connection = DriverManager.getConnection(
+    System.getenv("DB_URL"),
+    System.getenv("DB_USER"),
+    System.getenv("DB_PASSWORD")
+);
          PreparedStatement psAircraft  = connection.prepareStatement("SELECT num_seats FROM aircraft " +
     "WHERE aircraft_id = (SELECT aircraft_id FROM flight_search_operated_by " +
                                                    "WHERE flight_num = ? AND two_letter_id = ?)");
@@ -207,7 +215,11 @@ out.println("<br>");
 if(tripType.equals("roundTrip")){
 	try {
 	    Class.forName("com.mysql.cj.jdbc.Driver");
-	    con = DriverManager.getConnection(jdbcUrl, username, password);
+	    con = DriverManager.getConnection(
+    System.getenv("DB_URL"),
+    System.getenv("DB_USER"),
+    System.getenv("DB_PASSWORD")
+);
 	    st = con.createStatement();
 	    
 	
@@ -273,7 +285,11 @@ if(tripType.equals("roundTrip")){
 	//get Seat
 	ArrayList<String> retTakenSeats = new ArrayList<>();
 	 int numSeats = 0;
-   try (Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
+   try (Connection connection = DriverManager.getConnection(
+    System.getenv("DB_URL"),
+    System.getenv("DB_USER"),
+    System.getenv("DB_PASSWORD")
+);
         PreparedStatement psAircraft  = connection.prepareStatement("SELECT num_seats FROM aircraft " +
    "WHERE aircraft_id = (SELECT aircraft_id FROM flight_search_operated_by " +
                                                   "WHERE flight_num = ? AND two_letter_id = ?)");

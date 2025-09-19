@@ -4,7 +4,11 @@
 	String question = request.getParameter("question");
 	String reply = request.getParameter("reply");
 	Class.forName("com.mysql.jdbc.Driver");
-	Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbFinal", "root", "RUscr3w420!");
+	Connection con = DriverManager.getConnection(
+    System.getenv("DB_URL"),
+    System.getenv("DB_USER"),
+    System.getenv("DB_PASSWORD")
+);
 	String sql = "insert ignore into reply values (?,?)";
 	PreparedStatement ps = con.prepareStatement(sql);
 	ps.setString(1, reply);

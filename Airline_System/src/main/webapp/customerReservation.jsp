@@ -20,7 +20,11 @@ String insertQuery = "INSERT INTO ticket_economy_business_first_changes_buys (ti
         "booking_fee, change_ticket_fee, seat_number, class, flight_num) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 
-try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbFinal", "root", "RUscr3w420!");
+try (Connection connection = DriverManager.getConnection(
+    System.getenv("DB_URL"),
+    System.getenv("DB_USER"),
+    System.getenv("DB_PASSWORD")
+);
 		
 		
 			        
@@ -118,7 +122,11 @@ if(tripType.equals("roundTrip")){
 	        "booking_fee, change_ticket_fee, seat_number, class, flight_num) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 
-	try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbFinal", "root", "RUscr3w420!");
+	try (Connection connection = DriverManager.getConnection(
+    System.getenv("DB_URL"),
+    System.getenv("DB_USER"),
+    System.getenv("DB_PASSWORD")
+);
 			
 			
 			

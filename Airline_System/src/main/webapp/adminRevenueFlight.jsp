@@ -2,7 +2,11 @@
 <%
 	String flight_num = request.getParameter("flight_num");
 	Class.forName("com.mysql.jdbc.Driver");
-	Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbFinal", "root", "RUscr3w420!");
+	Connection con = DriverManager.getConnection(
+    System.getenv("DB_URL"),
+    System.getenv("DB_USER"),
+    System.getenv("DB_PASSWORD")
+);
 	Statement st = con.createStatement();
 	ResultSet rs;
 	rs = st.executeQuery("select sum(booking_fee) from ticket_economy_business_first_changes_buys where flight_num ='" + flight_num + "'");

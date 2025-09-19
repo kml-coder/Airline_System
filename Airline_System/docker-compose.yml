@@ -1,0 +1,28 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: airline_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: dbFinal
+      MYSQL_USER: airline
+      MYSQL_PASSWORD: airline
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  tomcat:
+    build: .
+    container_name: airline_app
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    env_file:
+    - .env
+
+volumes:
+  db_data:

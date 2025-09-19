@@ -14,7 +14,11 @@ Connection con = null;
 PreparedStatement pstmt = null;
 ResultSet rs = null;
 Class.forName("com.mysql.jdbc.Driver");
-con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbFinal", "root", "RUscr3w420!");
+con = DriverManager.getConnection(
+    System.getenv("DB_URL"),
+    System.getenv("DB_USER"),
+    System.getenv("DB_PASSWORD")
+);
 
 pstmt = con.prepareStatement("SELECT * FROM waiting_list JOIN customer ON waiting_list.acc_id = customer.acc_id WHERE flight_num = ?");
 pstmt.setString(1, flight_number);
@@ -44,7 +48,11 @@ out.println("<h2>Waiting List for Flight " + flight_number + "</h2> <a href='cus
 /*
     try {
         Class.forName("com.mysql.jdbc.Driver");
-    	con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbFinal", "root", "RUscr3w420!");
+    	con = DriverManager.getConnection(
+    System.getenv("DB_URL"),
+    System.getenv("DB_USER"),
+    System.getenv("DB_PASSWORD")
+);
 
         pstmt = con.prepareStatement("SELECT waiting_list FROM flight_search_operated_by WHERE flight_num = ?");
         pstmt.setString(1, flight_number);

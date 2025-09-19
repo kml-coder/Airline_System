@@ -34,7 +34,11 @@ float new_price = Float.parseFloat(request.getParameter("new_price"));
 int new_num_of_stops = Integer.parseInt(request.getParameter("new_num_of_stops"));
 
 Class.forName("com.mysql.jdbc.Driver");
-Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbFinal", "root", "RUscr3w420!");
+Connection con = DriverManager.getConnection(
+    System.getenv("DB_URL"),
+    System.getenv("DB_USER"),
+    System.getenv("DB_PASSWORD")
+);
 
 String sql = "update flight_search_operated_by set flight_num = ?, two_letter_id = ?, departure_time = ?, arrival_time = ?, departure_date = ?, arrival_date = ?, departure_airport = ?, destination_airport = ?, aircraft_id = ?, days_of_operation = ?, is_domestic = ?, price = ?, num_of_stops = ? where flight_num = ? and two_letter_id = ?";
 PreparedStatement ps = con.prepareStatement(sql);

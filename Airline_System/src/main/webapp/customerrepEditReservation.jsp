@@ -9,7 +9,11 @@
 	float change_ticket_fee = 50;
 
 	Class.forName("com.mysql.jdbc.Driver");
-	Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbFinal", "root", "RUscr3w420!");
+	Connection con = DriverManager.getConnection(
+    System.getenv("DB_URL"),
+    System.getenv("DB_USER"),
+    System.getenv("DB_PASSWORD")
+);
 	
 	String sql = "select * from ticket_economy_business_first_changes_buys where ticket_number = ?";
 	PreparedStatement ps = con.prepareStatement(sql);

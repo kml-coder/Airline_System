@@ -14,7 +14,11 @@ ResultSet rs = null;
 
 try {
     Class.forName("com.mysql.cj.jdbc.Driver");
-    con = DriverManager.getConnection(jdbcUrl, username, password);
+    con = DriverManager.getConnection(
+    System.getenv("DB_URL"),
+    System.getenv("DB_USER"),
+    System.getenv("DB_PASSWORD")
+);
     st = con.createStatement();
     
     session.setAttribute("firstName", request.getParameter("firstName")); 

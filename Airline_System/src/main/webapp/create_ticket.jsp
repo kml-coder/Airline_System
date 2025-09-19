@@ -22,7 +22,11 @@
 
     try {
         Class.forName("com.mysql.jdbc.Driver");
-    	con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbFinal", "root", "RUscr3w420!");
+    	con = DriverManager.getConnection(
+    System.getenv("DB_URL"),
+    System.getenv("DB_USER"),
+    System.getenv("DB_PASSWORD")
+);
 
         pstmt = con.prepareStatement("UPDATE flight_search_operated_by JOIN aircraft ON flight_search_operated_by.aircraft_id = aircraft.aircraft_id SET num_seats = num_seats - 1 WHERE flight_num = ?");
         pstmt.setString(1, flight_number);

@@ -1,7 +1,11 @@
 <%@ page import ="java.sql.*" %>
 <%
 	Class.forName("com.mysql.jdbc.Driver");
-	Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbFinal", "root", "RUscr3w420!");
+	Connection con = DriverManager.getConnection(
+    System.getenv("DB_URL"),
+    System.getenv("DB_USER"),
+    System.getenv("DB_PASSWORD")
+);
 	Statement st = con.createStatement();
 	ResultSet rs;
 	rs = st.executeQuery("select flight_num, count(ticket_number) as activity from ticket_economy_business_first_changes_buys group by flight_num order by activity desc");

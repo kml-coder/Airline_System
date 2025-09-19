@@ -15,7 +15,11 @@
     try {
 
         Class.forName("com.mysql.jdbc.Driver");
-        conn = DriverManager.getConnection(url, username, password);
+        conn = DriverManager.getConnection(
+    System.getenv("DB_URL"),
+    System.getenv("DB_USER"),
+    System.getenv("DB_PASSWORD")
+);
 
         String departingFlightQuery = "SELECT two_letter_id, flight_num, departure_time " +
                 "FROM flight_search_operated_by " +
